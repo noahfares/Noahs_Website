@@ -1,0 +1,130 @@
+/* ==========================================================================
+   GLOBAL STYLES & DESIGN TOKENS
+   --------------------------------------------------------------------------
+   All shared design decisions (colors, spacing, type) live here as CSS
+   variables. Change a value once and it updates everywhere.
+   ========================================================================== */
+
+:root {
+  /* --- Color palette (Apple-inspired: near-black on near-white) --- */
+  --color-bg: #fbfbfd;          /* page background */
+  --color-bg-alt: #ffffff;       /* card / alternate section background */
+  --color-bg-dark: #000000;      /* dark sections */
+  --color-text: #1d1d1f;         /* primary text */
+  --color-text-soft: #6e6e73;    /* secondary / muted text */
+  --color-text-invert: #f5f5f7;  /* text on dark backgrounds */
+  --color-accent: #0071e3;       /* Apple blue — links & primary buttons */
+  --color-accent-hover: #0077ed;
+  --color-border: #d2d2d7;       /* hairline borders */
+
+  /* --- Typography ---
+       Two complementary tech fonts:
+       IBM Plex Sans  — body text, paragraphs, descriptions (geometric, engineering feel)
+       JetBrains Mono — headings, labels, nav, tags, anything structural (code/CLI feel)
+       They're designed as a pair so they share the same proportions and feel cohesive. --- */
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* --- Layout --- */
+  --max-width: 1120px;
+  --nav-height: 48px;
+
+  /* --- Motion --- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: 0.4s var(--ease-out);
+}
+
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Offset anchor jumps so headings aren't hidden under the sticky nav. */
+  scroll-padding-top: var(--nav-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* --- Shared layout helper: centers content with consistent gutters. --- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+/* --- Section spacing helpers --- */
+.section {
+  padding: clamp(80px, 14vh, 160px) 0;
+}
+
+.section--dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-invert);
+  /* Subtle dot grid — gives dark sections a technical, circuit-board feel */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* --- Small code-comment label above section titles --- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: lowercase;
+  color: var(--color-accent);
+  margin-bottom: 14px;
+}
+
+/* Prepend a `//` comment prefix — the key techy touch */
+.eyebrow::before {
+  content: '// ';
+  opacity: 0.65;
+}
+
+/* --- Section heading — monospace gives it a code-editor feel --- */
+.section-title {
+  font-family: var(--font-mono);
+  font-size: clamp(1.9rem, 5vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* --- Respect users who prefer reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

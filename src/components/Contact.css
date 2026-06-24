@@ -13,7 +13,7 @@
   margin-top: 20px;
   max-width: 520px;
   font-size: clamp(1.05rem, 2vw, 1.3rem);
-  color: #a1a1a6;
+  color: var(--color-text-soft);
   line-height: 1.5;
 }
 

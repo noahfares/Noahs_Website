@@ -5,24 +5,27 @@
   gap: 24px;
 }
 
+/* Cards use CSS variables so they look right on both the warm-gray
+   light-mode section and the near-black dark-mode section.         */
 .card {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 32px;
-  background: linear-gradient(160deg, #1c1c1e, #161617);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 22px;
   padding: 32px;
+  box-shadow: var(--card-shadow);
   transition: transform var(--transition), border-color var(--transition),
     box-shadow var(--transition);
 }
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  border-color: var(--color-accent);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .card__category {
@@ -41,13 +44,14 @@
   font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: -0.02em;
+  color: var(--card-text);
 }
 
 .card__desc {
   margin-top: 12px;
-  color: #a1a1a6;
   font-size: 1rem;
   line-height: 1.5;
+  color: var(--card-text-soft);
 }
 
 .card__bottom {
@@ -67,10 +71,10 @@
 .card__tags li {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: #a1a1a6;
+  color: var(--card-text-soft);
   padding: 4px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 4px; /* square corners — feels more like a code token */
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
 }
 
 .card__link {

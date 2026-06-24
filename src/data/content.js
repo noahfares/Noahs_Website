@@ -16,12 +16,16 @@ export const site = {
   initial: 'N',
 }
 
-/* --- Navigation links (in order). `href` must match a section `id` below. --- */
+/* --- Navigation links (in order).
+       type:'anchor' → scrolls to a section id on the home page.
+       type:'page'   → navigates to a separate page (page: key used in routing). --- */
 export const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#work' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About',      href: '#about',   type: 'anchor' },
+  { label: 'Experience', href: '#work',    type: 'anchor' },
+  { label: 'Skills',     href: '#skills',  type: 'anchor' },
+  { label: 'Contact',    href: '#contact', type: 'anchor' },
+  { label: 'Strava',     page: 'strava',   type: 'page'   },
+  { label: 'Films',      page: 'films',    type: 'page'   },
 ]
 
 /* --- HERO: the big opening statement. --- */
@@ -110,6 +114,79 @@ export const skills = {
       name: 'Tools & Workflow',
       items: ['Git / GitHub', 'VS Code', 'OOP', 'Jira', 'Automation Frameworks'],
     },
+  ],
+}
+
+/* --- FILMS & TV: update these with your actual picks.
+       For each top5 entry, `gradient` is the CSS gradient used as the
+       poster placeholder — swap in a real image path via `poster` if you want. --- */
+export const films = {
+  eyebrow: 'Films & TV',
+  title: 'What I watch.',
+  subtitle: 'Curated picks, current obsessions, and the ever-growing queue.',
+
+  top5: [
+    {
+      title: 'Your #1 Film',
+      year: 2014,
+      director: 'Director Name',
+      rating: 10,
+      take: 'Replace this with your one-line take on why it made the list.',
+      gradient: 'linear-gradient(135deg, #0d1b2a 0%, #1b4f72 100%)',
+    },
+    {
+      title: 'Your #2 Film',
+      year: 2019,
+      director: 'Director Name',
+      rating: 9,
+      take: 'Your take here.',
+      gradient: 'linear-gradient(135deg, #1a0a2e 0%, #4a1a6b 100%)',
+    },
+    {
+      title: 'Your #3 Film',
+      year: 2010,
+      director: 'Director Name',
+      rating: 9,
+      take: 'Your take here.',
+      gradient: 'linear-gradient(135deg, #0a2e1a 0%, #1a6b3a 100%)',
+    },
+    {
+      title: 'Your #4 Film',
+      year: 2017,
+      director: 'Director Name',
+      rating: 9,
+      take: 'Your take here.',
+      gradient: 'linear-gradient(135deg, #2e1a0a 0%, #7a4a10 100%)',
+    },
+    {
+      title: 'Your #5 Film',
+      year: 2000,
+      director: 'Director Name',
+      rating: 8,
+      take: 'Your take here.',
+      gradient: 'linear-gradient(135deg, #2e0a0a 0%, #6b1a1a 100%)',
+    },
+  ],
+
+  directors: [
+    { name: 'Director Name', films: ['Film 1', 'Film 2', 'Film 3'] },
+    { name: 'Director Name', films: ['Film 1', 'Film 2'] },
+    { name: 'Director Name', films: ['Film 1', 'Film 2'] },
+  ],
+
+  /* What you're watching right now. type: 'movie' | 'show' */
+  watching: [
+    { title: 'Show Title', platform: 'Netflix', season: 1, type: 'show' },
+    { title: 'Movie Title', platform: 'Letterboxd queue', type: 'movie' },
+  ],
+
+  /* The queue. type: 'movie' | 'show' */
+  watchlist: [
+    { title: 'Film Title',    type: 'movie', notes: 'Why it\'s in the queue.' },
+    { title: 'Show Title',    type: 'show',  notes: '' },
+    { title: 'Film Title',    type: 'movie', notes: '' },
+    { title: 'Film Title',    type: 'movie', notes: '' },
+    { title: 'Film Title',    type: 'movie', notes: '' },
   ],
 }
 

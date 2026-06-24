@@ -3,7 +3,7 @@ import { site, navLinks } from '../data/content.js'
 import { SunIcon, MoonIcon } from './icons.jsx'
 import './Navbar.css'
 
-export default function Navbar({ theme, onToggleTheme }) {
+export default function Navbar({ theme, onToggleTheme, page = 'home', navigate }) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -13,16 +13,38 @@ export default function Navbar({ theme, onToggleTheme }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const handleAnchorClick = (e, href) => {
+    if (page !== 'home') {
+      e.preventDefault()
+      navigate('home')
+      setTimeout(() => {
+        const el = document.querySelector(href)
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      }, 120)
+    }
+  }
+
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <nav className="navbar__inner container">
-        <a href="#top" className="navbar__logo" aria-label="Home">
+        <button className="navbar__logo" onClick={() => navigate('home')} aria-label="Home">
           {site.initial}
-        </a>
+        </button>
         <ul className="navbar__links">
           {navLinks.map((link) => (
-            <li key={link.href}>
-              <a href={link.href}>{link.label}</a>
+            <li key={link.label}>
+              {link.type === 'page' ? (
+                <button
+                  className={`navbar__page-btn ${page === link.page ? 'navbar__page-btn--active' : ''}`}
+                  onClick={() => navigate(link.page)}
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <a href={link.href} onClick={(e) => handleAnchorClick(e, link.href)}>
+                  {link.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>

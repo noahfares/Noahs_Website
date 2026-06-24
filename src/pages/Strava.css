@@ -1,0 +1,241 @@
+.strava-page__hero {
+  padding-top: calc(var(--nav-height) + 5rem);
+}
+
+.strava-page__subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--color-text-soft);
+  margin-top: 0.9rem;
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+.strava-page__status {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--color-text-soft);
+  text-align: center;
+  padding: 4rem 0;
+}
+
+/* Empty state */
+.strava-page__empty {
+  text-align: center;
+  padding: 3rem 0 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.strava-page__empty-icon {
+  font-size: 3rem;
+  line-height: 1;
+  opacity: 0.35;
+}
+
+.strava-page__empty-title {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.strava-page__empty-body {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-text-soft);
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+.strava-page__empty-body code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--color-accent);
+}
+
+/* Year-to-date stat bar */
+.strava-stats {
+  display: flex;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+}
+
+.strava-stats__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.5rem 1.75rem;
+  border-right: 1px solid var(--color-border);
+  transition: background var(--transition);
+}
+
+.strava-stats__item:last-child {
+  border-right: none;
+}
+
+.strava-stats__item:hover {
+  background: var(--color-bg-dark);
+}
+
+.strava-stats__value {
+  font-family: var(--font-mono);
+  font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: -0.03em;
+}
+
+.strava-stats__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--color-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+@media (max-width: 640px) {
+  .strava-stats {
+    flex-direction: column;
+    border-radius: 12px;
+  }
+  .strava-stats__item {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.1rem 1.25rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .strava-stats__item:last-child {
+    border-bottom: none;
+  }
+  .strava-stats__label {
+    text-align: right;
+  }
+}
+
+/* Activity list */
+.strava-activities {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 2.5rem;
+}
+
+.activity-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 1.35rem 1.6rem;
+  box-shadow: var(--card-shadow);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.activity-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--color-accent);
+}
+
+.activity-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.activity-card__icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.activity-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-card__name {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activity-card__date {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-text-soft);
+}
+
+.activity-card__type {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  border: 1px solid var(--color-border);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.activity-card__stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.activity-card__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.activity-card__stat-val {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.activity-card__stat-key {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--color-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.strava-page__updated {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-soft);
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.strava-page__updated a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.strava-page__updated a:hover {
+  text-decoration: underline;
+}

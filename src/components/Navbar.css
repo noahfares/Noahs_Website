@@ -31,6 +31,11 @@
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: -0.01em;
+  color: var(--color-text);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .navbar__links {
@@ -77,11 +82,41 @@
   height: 16px;
 }
 
+/* Page-nav buttons (Strava, Films) — match anchor link look */
+.navbar__page-btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text);
+  opacity: 0.75;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.navbar__page-btn:hover {
+  opacity: 1;
+}
+
+.navbar__page-btn--active {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
 @media (max-width: 600px) {
   .navbar__links {
-    gap: 20px;
+    gap: 14px;
   }
-  .navbar__links a {
-    font-size: 0.82rem;
+  .navbar__links a,
+  .navbar__page-btn {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 420px) {
+  /* On very small screens hide the section anchors, keep the page links */
+  .navbar__links li:not(:nth-last-child(-n+2)) {
+    display: none;
   }
 }

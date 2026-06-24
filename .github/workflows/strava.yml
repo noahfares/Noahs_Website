@@ -39,7 +39,7 @@ name: Strava Data Sync
 
 on:
   schedule:
-    - cron: '0 * * * *'     # every hour
+    - cron: '*/10 * * * *'  # every 10 minutes
   workflow_dispatch:          # manual trigger from Actions tab
 
 jobs:

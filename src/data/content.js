@@ -231,12 +231,50 @@ export const films = {
   ],
 
   watchlist: [
-    { title: 'Project Hail Mary',  type: 'movie', notes: '' },
-    { title: 'Oppenheimer',        type: 'movie', notes: '' },
-    { title: 'Dune: Part Two',     type: 'movie', notes: '' },
-    { title: 'The Godfather',      type: 'movie', notes: 'Parts I & II' },
-    { title: 'Kill Bill',          type: 'movie', notes: 'Vol. 1 & 2' },
-    { title: 'Heat',               type: 'movie', notes: '' },
+    {
+      title: 'Project Hail Mary',
+      year: 2026,
+      director: 'Phil Lord & Chris Miller',
+      rating: 9,
+      poster: 'https://upload.wikimedia.org/wikipedia/en/a/ad/Project_Hail_Mary%2C_First_Edition_Cover_%282021%29.jpg',
+    },
+    {
+      title: 'Oppenheimer',
+      year: 2023,
+      director: 'Christopher Nolan',
+      rating: 9,
+      poster: 'https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg',
+    },
+    {
+      title: 'Dune: Part Two',
+      year: 2024,
+      director: 'Denis Villeneuve',
+      rating: 9,
+      poster: 'https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpeg',
+    },
+    {
+      title: 'The Godfather',
+      year: 1972,
+      director: 'Francis Ford Coppola',
+      rating: 10,
+      note: 'Parts I & II',
+      poster: 'https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg',
+    },
+    {
+      title: 'Kill Bill',
+      year: '2003–2004',
+      director: 'Quentin Tarantino',
+      rating: 9,
+      note: 'Vol. 1 & 2',
+      poster: 'https://upload.wikimedia.org/wikipedia/en/2/2c/Kill_Bill_Volume_1.png',
+    },
+    {
+      title: 'Heat',
+      year: 1995,
+      director: 'Michael Mann',
+      rating: 9,
+      poster: 'https://upload.wikimedia.org/wikipedia/en/6/6c/Heatposter.jpg',
+    },
   ],
 }
 

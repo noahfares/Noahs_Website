@@ -35,32 +35,6 @@ function MovieCard({ film, rank }) {
   )
 }
 
-const WATCHLIST_GRADIENTS = [
-  'linear-gradient(160deg, #0a1628 0%, #1a3a6b 100%)',
-  'linear-gradient(160deg, #1a1208 0%, #3d2d10 100%)',
-  'linear-gradient(160deg, #1a1208 0%, #5c4a20 100%)',
-  'linear-gradient(160deg, #1a0808 0%, #4a1010 100%)',
-  'linear-gradient(160deg, #1a1500 0%, #4a3d00 100%)',
-  'linear-gradient(160deg, #080a1a 0%, #101535 100%)',
-]
-
-function WatchlistCard({ item, rank }) {
-  const gradient = WATCHLIST_GRADIENTS[(rank - 1) % WATCHLIST_GRADIENTS.length]
-  return (
-    <div className="movie-card">
-      <div className="movie-card__poster" style={{ background: gradient }}>
-        <div className="movie-card__poster-title">{item.title}</div>
-      </div>
-      <div className="movie-card__body">
-        <p className="movie-card__director">{item.type === 'show' ? 'Series' : 'Film'}</p>
-        <h3 className="movie-card__title">{item.title}</h3>
-        {item.notes && <p className="movie-card__note">{item.notes}</p>}
-        <span className="movie-card__rank">#{rank}</span>
-      </div>
-    </div>
-  )
-}
-
 export default function Films() {
   return (
     <div className="films-page">
@@ -97,9 +71,9 @@ export default function Films() {
           <Reveal as="p" className="eyebrow">Queue</Reveal>
           <Reveal as="h2" className="section-title" delay={0.05}>The watchlist.</Reveal>
           <div className="movies-grid">
-            {films.watchlist.map((item, i) => (
-              <Reveal key={item.title + i} delay={0.06 + i * 0.07}>
-                <WatchlistCard item={item} rank={i + 1} />
+            {films.watchlist.map((film, i) => (
+              <Reveal key={film.title + i} delay={0.06 + i * 0.07}>
+                <MovieCard film={film} rank={i + 1} />
               </Reveal>
             ))}
           </div>

@@ -24,7 +24,7 @@
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1;
-  background: linear-gradient(180deg, #1d1d1f 30%, #515154);
+  background: var(--hero-title-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

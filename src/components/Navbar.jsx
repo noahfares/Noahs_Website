@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react'
 import { site, navLinks } from '../data/content.js'
+import { SunIcon, MoonIcon } from './icons.jsx'
 import './Navbar.css'
 
-/**
- * Navbar
- * ------
- * Sticky, translucent top bar with backdrop blur — gains a stronger
- * background once the user scrolls past the hero, matching Apple's nav.
- */
-export default function Navbar() {
+export default function Navbar({ theme, onToggleTheme }) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -31,6 +26,13 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+        <button
+          className="navbar__theme-toggle"
+          onClick={onToggleTheme}
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        >
+          {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+        </button>
       </nav>
     </header>
   )

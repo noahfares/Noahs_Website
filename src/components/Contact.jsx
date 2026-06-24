@@ -26,22 +26,6 @@ export default function Contact() {
             {contact.email}
           </a>
         </Reveal>
-
-        {contact.socials?.length > 0 && (
-          <Reveal className="contact__socials" delay={0.2}>
-            {contact.socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noreferrer"
-                className="contact__social"
-              >
-                {social.label}
-              </a>
-            ))}
-          </Reveal>
-        )}
       </div>
     </section>
   )

@@ -60,6 +60,14 @@ export const work = {
 
 export const projects = [
   {
+    title: 'Robotics Support E.I.T.',
+    category: 'Promise Robotics · Calgary, AB · 2026 – Present',
+    description:
+      'More details coming soon.',
+    tags: ['Robotics'],
+    link: '#',
+  },
+  {
     title: 'Software Automation Engineer',
     category: 'Lumentum · Ottawa, ON · 2024',
     description:
@@ -111,8 +119,12 @@ export const contact = {
   title: "Let's build something.",
   text: "Open to new opportunities, collaborations, or just a good conversation. I'd love to hear from you.",
   email: 'noahfares@gmail.com',
+  // Used by the footer icon bar. Discord has no public profile URL — the title
+  // attribute shows the username on hover. Update href when you have your profile link.
   socials: [
+    { label: 'Email',    href: 'mailto:noahfares@gmail.com' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/noahfares/' },
-    { label: 'GitHub', href: 'https://github.com/' },
+    { label: 'GitHub',   href: 'https://github.com/noahfares' },
+    { label: 'Discord',  href: 'https://discord.com', title: 'odyssey9662' },
   ],
 }

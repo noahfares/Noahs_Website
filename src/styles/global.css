@@ -6,16 +6,32 @@
    ========================================================================== */
 
 :root {
-  /* --- Color palette (Apple-inspired: near-black on near-white) --- */
-  --color-bg: #fbfbfd;          /* page background */
-  --color-bg-alt: #ffffff;       /* card / alternate section background */
-  --color-bg-dark: #000000;      /* dark sections */
-  --color-text: #1d1d1f;         /* primary text */
-  --color-text-soft: #6e6e73;    /* secondary / muted text */
-  --color-text-invert: #f5f5f7;  /* text on dark backgrounds */
-  --color-accent: #0071e3;       /* Apple blue — links & primary buttons */
+  /* --- Light mode (default) --- */
+  --color-bg: #fbfbfd;
+  --color-bg-alt: #ffffff;
+  --color-bg-dark: #000000;
+  --color-text: #1d1d1f;
+  --color-text-soft: #6e6e73;
+  --color-text-invert: #f5f5f7;
+  --color-accent: #0071e3;
   --color-accent-hover: #0077ed;
-  --color-border: #d2d2d7;       /* hairline borders */
+  --color-border: #d2d2d7;
+  --color-navbar-blur: rgba(251, 251, 253, 0.82);
+  --hero-title-gradient: linear-gradient(180deg, #1d1d1f 30%, #515154);
+}
+
+/* --- Dark mode overrides — applied via data-theme="dark" on <html> --- */
+:root[data-theme="dark"] {
+  --color-bg: #111113;
+  --color-bg-alt: #1c1c1e;
+  --color-bg-dark: #0a0a0b;
+  --color-text: #e8e8ed;
+  --color-text-soft: #98989d;
+  --color-text-invert: #e8e8ed;
+  --color-border: #3a3a3c;
+  --color-navbar-blur: rgba(17, 17, 19, 0.88);
+  --hero-title-gradient: linear-gradient(180deg, #e8e8ed 30%, #a1a1a6);
+}
 
   /* --- Typography ---
        Two complementary tech fonts:

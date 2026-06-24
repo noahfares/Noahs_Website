@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
@@ -6,17 +7,25 @@ import Skills from './components/Skills.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 
-/**
- * App
- * ---
- * The page is a single scroll of stacked sections. To add, remove, or
- * reorder sections, change the order of components below (and add a matching
- * link in src/data/content.js -> navLinks).
- */
 export default function App() {
+  const [theme, setTheme] = useState(() => {
+    // Read what the inline <script> in index.html already applied so there's no mismatch.
+    if (typeof window !== 'undefined') {
+      return document.documentElement.getAttribute('data-theme') || 'light'
+    }
+    return 'light'
+  })
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
+
   return (
     <>
-      <Navbar />
+      <Navbar theme={theme} onToggleTheme={toggleTheme} />
       <main>
         <Hero />
         <About />

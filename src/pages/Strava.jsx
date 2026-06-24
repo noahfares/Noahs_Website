@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
 import './Strava.css'
 
@@ -39,6 +39,72 @@ const TYPE_ICONS = {
   Workout:        '💪',
   Rowing:         '🚣',
   Yoga:           '🧘',
+}
+
+function PhotoCarousel({ photos }) {
+  const [idx, setIdx] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const intervalRef = useRef(null)
+
+  const next = () => setIdx((i) => (i + 1) % photos.length)
+  const prev = () => setIdx((i) => (i - 1 + photos.length) % photos.length)
+
+  useEffect(() => {
+    if (paused || photos.length <= 1) return
+    intervalRef.current = setInterval(next, 5000)
+    return () => clearInterval(intervalRef.current)
+  }, [paused, photos.length])
+
+  if (!photos.length) return null
+
+  return (
+    <div
+      className="photo-carousel"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div
+        className="photo-carousel__track"
+        style={{ transform: `translateX(-${idx * 100}%)` }}
+      >
+        {photos.map((p, i) => (
+          <div key={i} className="photo-carousel__slide">
+            <img src={p.url} alt={p.activity_name} loading="lazy" />
+            <div className="photo-carousel__caption">
+              <span className="photo-carousel__caption-icon">
+                {TYPE_ICONS[p.activity_type] ?? '📍'}
+              </span>
+              <div>
+                <p className="photo-carousel__caption-name">{p.activity_name}</p>
+                <p className="photo-carousel__caption-date">{fmtDate(p.activity_date)}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {photos.length > 1 && (
+        <>
+          <button className="photo-carousel__btn photo-carousel__btn--prev" onClick={prev} aria-label="Previous photo">
+            ←
+          </button>
+          <button className="photo-carousel__btn photo-carousel__btn--next" onClick={next} aria-label="Next photo">
+            →
+          </button>
+          <div className="photo-carousel__dots">
+            {photos.map((_, i) => (
+              <button
+                key={i}
+                className={`photo-carousel__dot ${i === idx ? 'photo-carousel__dot--active' : ''}`}
+                onClick={() => setIdx(i)}
+                aria-label={`Photo ${i + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  )
 }
 
 function ActivityCard({ act }) {
@@ -101,6 +167,7 @@ export default function Strava() {
   }, [])
 
   const hasActivities = data?.activities?.length > 0
+  const hasPhotos = data?.photos?.length > 0
   const ytd = data?.stats?.ytd_run_totals
 
   return (
@@ -111,7 +178,7 @@ export default function Strava() {
           <Reveal as="p" className="eyebrow">Strava</Reveal>
           <Reveal as="h1" className="section-title" delay={0.05}>On the move.</Reveal>
           <Reveal as="p" className="strava-page__subtitle" delay={0.1}>
-            Running logs and activity history — pulled straight from Strava and updated daily.
+            Running logs and activity history — pulled straight from Strava and updated every 10 minutes.
           </Reveal>
         </div>
       </section>
@@ -163,6 +230,18 @@ export default function Strava() {
                       <span className="strava-stats__label">time on feet</span>
                     </div>
                   </div>
+                </Reveal>
+              </div>
+            </section>
+          )}
+
+          {hasPhotos && (
+            <section className="section section--dark">
+              <div className="container">
+                <Reveal as="p" className="eyebrow">Photos</Reveal>
+                <Reveal as="h2" className="section-title" delay={0.05}>From the road.</Reveal>
+                <Reveal delay={0.1}>
+                  <PhotoCarousel photos={data.photos} />
                 </Reveal>
               </div>
             </section>

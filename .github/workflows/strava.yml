@@ -98,6 +98,52 @@ jobs:
               updated_at: $updated
             }' > public/strava-data.json
 
+      - name: Enrich activities with photos
+        env:
+          TOKEN: ${{ steps.auth.outputs.token }}
+        run: |
+          cat > /tmp/fetch_photos.py << 'PYEOF'
+          import json, urllib.request, os, sys
+
+          token = os.environ["TOKEN"]
+
+          def fetch(url):
+              req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
+              try:
+                  with urllib.request.urlopen(req, timeout=10) as r:
+                      return json.loads(r.read())
+              except Exception as e:
+                  print(f"Warning: {url} — {e}", file=sys.stderr)
+                  return []
+
+          with open("public/strava-data.json") as f:
+              data = json.load(f)
+
+          all_photos = []
+          for act in data.get("activities", []):
+              if act.get("total_photo_count", 0) > 0:
+                  photos = fetch(
+                      f"https://www.strava.com/api/v3/activities/{act['id']}/photos"
+                      f"?size=1200&photo_sources=true"
+                  )
+                  for p in photos:
+                      url = p.get("urls", {}).get("1200", "")
+                      if url:
+                          all_photos.append({
+                              "url": url,
+                              "activity_name": act["name"],
+                              "activity_date": act["start_date"],
+                              "activity_type": act.get("sport_type", act.get("type", "Activity")),
+                          })
+
+          data["photos"] = all_photos
+          print(f"Collected {len(all_photos)} photos", file=sys.stderr)
+
+          with open("public/strava-data.json", "w") as f:
+              json.dump(data, f)
+          PYEOF
+          python3 /tmp/fetch_photos.py
+
       - name: Commit and trigger deploy if data changed
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -231,11 +231,12 @@ export const films = {
   ],
 
   watchlist: [
-    { title: 'Oppenheimer',            type: 'movie', notes: 'Somehow the one Nolan I missed.' },
-    { title: 'Parasite',               type: 'movie', notes: '' },
-    { title: 'The Bear',               type: 'show',  notes: 'Everyone keeps telling me.' },
-    { title: 'No Country for Old Men', type: 'movie', notes: '' },
-    { title: 'Heat',                   type: 'movie', notes: 'Classic I need to revisit.' },
+    { title: 'Project Hail Mary',  type: 'movie', notes: '' },
+    { title: 'Oppenheimer',        type: 'movie', notes: '' },
+    { title: 'Dune: Part Two',     type: 'movie', notes: '' },
+    { title: 'The Godfather',      type: 'movie', notes: 'Parts I & II' },
+    { title: 'Kill Bill',          type: 'movie', notes: 'Vol. 1 & 2' },
+    { title: 'Heat',               type: 'movie', notes: '' },
   ],
 }
 

@@ -177,9 +177,6 @@ export default function Strava() {
         <div className="container">
           <Reveal as="p" className="eyebrow">Strava</Reveal>
           <Reveal as="h1" className="section-title" delay={0.05}>On the move.</Reveal>
-          <Reveal as="p" className="strava-page__subtitle" delay={0.1}>
-            Running logs and activity history — pulled straight from Strava and updated every 10 minutes.
-          </Reveal>
         </div>
       </section>
 

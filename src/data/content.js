@@ -117,76 +117,125 @@ export const skills = {
   ],
 }
 
-/* --- FILMS & TV: update these with your actual picks.
-       For each top5 entry, `gradient` is the CSS gradient used as the
-       poster placeholder — swap in a real image path via `poster` if you want. --- */
 export const films = {
   eyebrow: 'Films & TV',
   title: 'What I watch.',
   subtitle: 'Curated picks, current obsessions, and the ever-growing queue.',
 
-  top5: [
+  topMovies: [
     {
-      title: 'Your #1 Film',
+      title: 'Interstellar',
       year: 2014,
-      director: 'Director Name',
+      director: 'Christopher Nolan',
       rating: 10,
-      take: 'Replace this with your one-line take on why it made the list.',
-      gradient: 'linear-gradient(135deg, #0d1b2a 0%, #1b4f72 100%)',
+      take: 'Love and gravity bending the fabric of time — a film that stays with you long after the credits.',
+      poster: 'https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg',
     },
     {
-      title: 'Your #2 Film',
-      year: 2019,
-      director: 'Director Name',
-      rating: 9,
-      take: 'Your take here.',
-      gradient: 'linear-gradient(135deg, #1a0a2e 0%, #4a1a6b 100%)',
-    },
-    {
-      title: 'Your #3 Film',
+      title: 'Inception',
       year: 2010,
-      director: 'Director Name',
-      rating: 9,
-      take: 'Your take here.',
-      gradient: 'linear-gradient(135deg, #0a2e1a 0%, #1a6b3a 100%)',
+      director: 'Christopher Nolan',
+      rating: 10,
+      take: 'A perfectly engineered dream machine where every rewatch reveals new layers.',
+      poster: 'https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg',
     },
     {
-      title: 'Your #4 Film',
-      year: 2017,
-      director: 'Director Name',
+      title: 'Spider-Man: Into the Spider-Verse',
+      year: 2018,
+      director: 'Persichetti · Ramsey · Rothman',
       rating: 9,
-      take: 'Your take here.',
-      gradient: 'linear-gradient(135deg, #2e1a0a 0%, #7a4a10 100%)',
+      take: 'Animation reinvented. The most creatively daring superhero film ever made.',
+      poster: 'https://upload.wikimedia.org/wikipedia/en/f/fa/Spider-Man_Into_the_Spider-Verse_poster.png',
     },
     {
-      title: 'Your #5 Film',
-      year: 2000,
-      director: 'Director Name',
+      title: 'Inglourious Basterds',
+      year: 2009,
+      director: 'Quentin Tarantino',
+      rating: 9,
+      take: "Tarantino's most patient and rewarding script, with a final act that earns every second.",
+      poster: 'https://upload.wikimedia.org/wikipedia/en/c/c3/Inglourious_Basterds_poster.jpg',
+    },
+    {
+      title: 'The Prestige',
+      year: 2006,
+      director: 'Christopher Nolan',
+      rating: 9,
+      take: "A magician's duel that turns the entire film into its own trick.",
+      poster: 'https://upload.wikimedia.org/wikipedia/en/d/d2/Prestige_poster.jpg',
+    },
+    {
+      title: 'The Dark Knight Trilogy',
+      year: '2005–2012',
+      director: 'Christopher Nolan',
+      rating: 10,
+      take: 'Nolan raised the bar for what superhero cinema could aspire to be.',
+      note: 'Batman Begins · The Dark Knight · The Dark Knight Rises',
+      poster: 'https://upload.wikimedia.org/wikipedia/en/1/1c/The_Dark_Knight_%282008_film%29.jpg',
+    },
+    {
+      title: 'The Matrix',
+      year: 1999,
+      director: 'Lana & Lilly Wachowski',
+      rating: 9,
+      take: 'The film that rewired my brain as a kid and still holds up on every rewatch.',
+      poster: 'https://upload.wikimedia.org/wikipedia/en/d/db/The_Matrix.png',
+    },
+    {
+      title: 'Good Will Hunting',
+      year: 1997,
+      director: 'Gus Van Sant',
+      rating: 9,
+      take: 'Raw, honest, and one of the best performances ever committed to film.',
+      poster: 'https://upload.wikimedia.org/wikipedia/en/5/52/Good_Will_Hunting.png',
+    },
+    {
+      title: 'Man of Steel',
+      year: 2013,
+      director: 'Zack Snyder',
       rating: 8,
-      take: 'Your take here.',
-      gradient: 'linear-gradient(135deg, #2e0a0a 0%, #6b1a1a 100%)',
+      take: 'The Superman origin story done with genuine weight and consequence.',
+      poster: 'https://upload.wikimedia.org/wikipedia/en/5/50/Man_of_Steel_%28film%29_poster.jpg',
+    },
+    {
+      title: 'Django Unchained',
+      year: 2012,
+      director: 'Quentin Tarantino',
+      rating: 9,
+      take: 'Tarantino at his most kinetic — brutal, funny, and stylistically unmatched.',
+      poster: 'https://upload.wikimedia.org/wikipedia/en/8/8b/Django_Unchained_Poster.jpg',
     },
   ],
 
   directors: [
-    { name: 'Director Name', films: ['Film 1', 'Film 2', 'Film 3'] },
-    { name: 'Director Name', films: ['Film 1', 'Film 2'] },
-    { name: 'Director Name', films: ['Film 1', 'Film 2'] },
+    {
+      name: 'Christopher Nolan',
+      films: ['Interstellar', 'Inception', 'The Prestige', 'The Dark Knight Trilogy'],
+    },
+    {
+      name: 'Quentin Tarantino',
+      films: ['Inglourious Basterds', 'Django Unchained', 'Pulp Fiction'],
+    },
+    {
+      name: 'Zack Snyder',
+      films: ['Man of Steel', '300', 'Watchmen'],
+    },
+    {
+      name: 'The Wachowskis',
+      films: ['The Matrix', 'The Matrix Reloaded', 'Speed Racer'],
+    },
   ],
 
-  /* What you're watching right now. type: 'movie' | 'show' */
   watching: [
-    { title: 'Show Title', platform: 'Netflix', season: 1, type: 'show' },
-    { title: 'Movie Title', platform: 'Letterboxd queue', type: 'movie' },
+    { title: 'Severance', platform: 'Apple TV+', season: 2, type: 'show' },
+    { title: 'Dune: Part Two', platform: 'Max', type: 'movie' },
   ],
 
-  /* The queue. type: 'movie' | 'show' */
   watchlist: [
-    { title: 'Film Title',    type: 'movie', notes: 'Why it\'s in the queue.' },
-    { title: 'Show Title',    type: 'show',  notes: '' },
-    { title: 'Film Title',    type: 'movie', notes: '' },
-    { title: 'Film Title',    type: 'movie', notes: '' },
-    { title: 'Film Title',    type: 'movie', notes: '' },
+    { title: 'Oppenheimer',            type: 'movie', notes: 'Somehow the one Nolan I missed.' },
+    { title: 'Parasite',               type: 'movie', notes: '' },
+    { title: 'The Bear',               type: 'show',  notes: 'Everyone keeps telling me.' },
+    { title: 'No Country for Old Men', type: 'movie', notes: '' },
+    { title: 'Heat',                   type: 'movie', notes: 'Classic I need to revisit.' },
   ],
 }
 

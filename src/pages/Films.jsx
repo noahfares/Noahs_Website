@@ -15,13 +15,20 @@ function StarRating({ rating }) {
 function MovieCard({ film, rank }) {
   return (
     <div className="movie-card">
-      <div className="movie-card__poster" style={{ background: film.gradient }}>
+      <div
+        className="movie-card__poster"
+        style={film.poster ? undefined : { background: film.gradient }}
+      >
+        {film.poster && (
+          <img src={film.poster} alt={film.title} loading="lazy" className="movie-card__poster-img" />
+        )}
         <span className="movie-card__rank">#{rank}</span>
         <div className="movie-card__poster-title">{film.title}</div>
       </div>
       <div className="movie-card__body">
         <p className="movie-card__director">{film.director} · {film.year}</p>
         <h3 className="movie-card__title">{film.title}</h3>
+        {film.note && <p className="movie-card__note">{film.note}</p>}
         <StarRating rating={film.rating} />
         <p className="movie-card__take">"{film.take}"</p>
       </div>
@@ -61,13 +68,13 @@ export default function Films() {
         </div>
       </section>
 
-      {/* Top 5 */}
+      {/* Top films */}
       <section className="section section--dark">
         <div className="container">
           <Reveal as="p" className="eyebrow">All-time</Reveal>
-          <Reveal as="h2" className="section-title" delay={0.05}>Top 5 films.</Reveal>
+          <Reveal as="h2" className="section-title" delay={0.05}>Top films.</Reveal>
           <div className="movies-grid">
-            {films.top5.map((film, i) => (
+            {films.topMovies.map((film, i) => (
               <Reveal key={film.title} delay={0.06 + i * 0.07}>
                 <MovieCard film={film} rank={i + 1} />
               </Reveal>

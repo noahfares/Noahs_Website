@@ -22,7 +22,6 @@ function MovieCard({ film, rank }) {
         {film.poster && (
           <img src={film.poster} alt={film.title} loading="lazy" className="movie-card__poster-img" />
         )}
-        <span className="movie-card__rank">#{rank}</span>
         <div className="movie-card__poster-title">{film.title}</div>
       </div>
       <div className="movie-card__body">
@@ -30,25 +29,34 @@ function MovieCard({ film, rank }) {
         <h3 className="movie-card__title">{film.title}</h3>
         {film.note && <p className="movie-card__note">{film.note}</p>}
         <StarRating rating={film.rating} />
-        <p className="movie-card__take">"{film.take}"</p>
+        <span className="movie-card__rank">#{rank}</span>
       </div>
     </div>
   )
 }
 
-function WatchingCard({ item }) {
+const WATCHLIST_GRADIENTS = [
+  'linear-gradient(160deg, #0a1628 0%, #1a3a6b 100%)',
+  'linear-gradient(160deg, #1a1208 0%, #3d2d10 100%)',
+  'linear-gradient(160deg, #1a1208 0%, #5c4a20 100%)',
+  'linear-gradient(160deg, #1a0808 0%, #4a1010 100%)',
+  'linear-gradient(160deg, #1a1500 0%, #4a3d00 100%)',
+  'linear-gradient(160deg, #080a1a 0%, #101535 100%)',
+]
+
+function WatchlistCard({ item, rank }) {
+  const gradient = WATCHLIST_GRADIENTS[(rank - 1) % WATCHLIST_GRADIENTS.length]
   return (
-    <div className="watching-card">
-      <div className="watching-card__left">
-        <span className="watching-card__badge">{item.type === 'show' ? 'TV' : 'Film'}</span>
-        <div>
-          <p className="watching-card__title">{item.title}</p>
-          {item.season && (
-            <p className="watching-card__meta">Season {item.season}</p>
-          )}
-        </div>
+    <div className="movie-card">
+      <div className="movie-card__poster" style={{ background: gradient }}>
+        <div className="movie-card__poster-title">{item.title}</div>
       </div>
-      <span className="watching-card__platform">{item.platform}</span>
+      <div className="movie-card__body">
+        <p className="movie-card__director">{item.type === 'show' ? 'Series' : 'Film'}</p>
+        <h3 className="movie-card__title">{item.title}</h3>
+        {item.notes && <p className="movie-card__note">{item.notes}</p>}
+        <span className="movie-card__rank">#{rank}</span>
+      </div>
     </div>
   )
 }
@@ -83,72 +91,17 @@ export default function Films() {
         </div>
       </section>
 
-      {/* Favourite Directors */}
+      {/* Watchlist */}
       <section className="section">
         <div className="container">
-          <Reveal as="p" className="eyebrow">Directors</Reveal>
-          <Reveal as="h2" className="section-title" delay={0.05}>Directors I keep going back to.</Reveal>
-          <div className="directors-grid">
-            {films.directors.map((dir, i) => (
-              <Reveal key={dir.name} delay={0.06 + i * 0.06}>
-                <div className="director-card">
-                  <h3 className="director-card__name">{dir.name}</h3>
-                  <ul className="director-card__films">
-                    {dir.films.map((f) => (
-                      <li key={f}>{f}</li>
-                    ))}
-                  </ul>
-                </div>
+          <Reveal as="p" className="eyebrow">Queue</Reveal>
+          <Reveal as="h2" className="section-title" delay={0.05}>The watchlist.</Reveal>
+          <div className="movies-grid">
+            {films.watchlist.map((item, i) => (
+              <Reveal key={item.title + i} delay={0.06 + i * 0.07}>
+                <WatchlistCard item={item} rank={i + 1} />
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Currently Watching + Watchlist side by side */}
-      <section className="section section--dark">
-        <div className="container">
-          <div className="films-lower">
-
-            <div className="films-lower__col">
-              <Reveal as="p" className="eyebrow">Now</Reveal>
-              <Reveal as="h2" className="section-title section-title--sm" delay={0.05}>
-                Currently watching.
-              </Reveal>
-              <div className="watching-list">
-                {films.watching.map((item, i) => (
-                  <Reveal key={item.title} delay={0.06 + i * 0.06}>
-                    <WatchingCard item={item} />
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-
-            <div className="films-lower__col">
-              <Reveal as="p" className="eyebrow">Queue</Reveal>
-              <Reveal as="h2" className="section-title section-title--sm" delay={0.05}>
-                The watchlist.
-              </Reveal>
-              <ol className="watchlist">
-                {films.watchlist.map((item, i) => (
-                  <Reveal key={item.title + i} as="li" delay={0.06 + i * 0.05}>
-                    <div className="watchlist__item">
-                      <div className="watchlist__left">
-                        <span className="watchlist__num">{String(i + 1).padStart(2, '0')}</span>
-                        <div>
-                          <p className="watchlist__title">{item.title}</p>
-                          {item.notes && (
-                            <p className="watchlist__notes">{item.notes}</p>
-                          )}
-                        </div>
-                      </div>
-                      <span className="watchlist__type">{item.type}</span>
-                    </div>
-                  </Reveal>
-                ))}
-              </ol>
-            </div>
-
           </div>
         </div>
       </section>

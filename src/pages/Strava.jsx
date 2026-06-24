@@ -42,18 +42,26 @@ const TYPE_ICONS = {
 }
 
 function PhotoCarousel({ photos }) {
+  const [shuffled] = useState(() => {
+    const arr = [...photos]
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[arr[i], arr[j]] = [arr[j], arr[i]]
+    }
+    return arr
+  })
   const [idx, setIdx] = useState(0)
   const [paused, setPaused] = useState(false)
   const intervalRef = useRef(null)
 
-  const next = () => setIdx((i) => (i + 1) % photos.length)
-  const prev = () => setIdx((i) => (i - 1 + photos.length) % photos.length)
+  const next = () => setIdx((i) => (i + 1) % shuffled.length)
+  const prev = () => setIdx((i) => (i - 1 + shuffled.length) % shuffled.length)
 
   useEffect(() => {
-    if (paused || photos.length <= 1) return
+    if (paused || shuffled.length <= 1) return
     intervalRef.current = setInterval(next, 5000)
     return () => clearInterval(intervalRef.current)
-  }, [paused, photos.length])
+  }, [paused, shuffled.length])
 
   if (!photos.length) return null
 
@@ -67,7 +75,7 @@ function PhotoCarousel({ photos }) {
         className="photo-carousel__track"
         style={{ transform: `translateX(-${idx * 100}%)` }}
       >
-        {photos.map((p, i) => (
+        {shuffled.map((p, i) => (
           <div key={i} className="photo-carousel__slide">
             <img src={p.url} alt={p.activity_name} loading="lazy" />
             <div className="photo-carousel__caption">
@@ -83,7 +91,7 @@ function PhotoCarousel({ photos }) {
         ))}
       </div>
 
-      {photos.length > 1 && (
+      {shuffled.length > 1 && (
         <>
           <button className="photo-carousel__btn photo-carousel__btn--prev" onClick={prev} aria-label="Previous photo">
             ←
@@ -91,16 +99,6 @@ function PhotoCarousel({ photos }) {
           <button className="photo-carousel__btn photo-carousel__btn--next" onClick={next} aria-label="Next photo">
             →
           </button>
-          <div className="photo-carousel__dots">
-            {photos.map((_, i) => (
-              <button
-                key={i}
-                className={`photo-carousel__dot ${i === idx ? 'photo-carousel__dot--active' : ''}`}
-                onClick={() => setIdx(i)}
-                aria-label={`Photo ${i + 1}`}
-              />
-            ))}
-          </div>
         </>
       )}
     </div>

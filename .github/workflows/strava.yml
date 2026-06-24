@@ -105,6 +105,7 @@ jobs:
           cat > /tmp/fetch_photos.py << 'PYEOF'
           import json, urllib.request, os, sys
 
+          sys.stdout.reconfigure(encoding='utf-8')
           token = os.environ["TOKEN"]
 
           def fetch(url):
@@ -119,22 +120,41 @@ jobs:
           with open("public/strava-data.json") as f:
               data = json.load(f)
 
+          def collect_photos_from_activities(activities, all_photos):
+              for act in activities:
+                  if act.get("total_photo_count", 0) > 0:
+                      photos = fetch(
+                          f"https://www.strava.com/api/v3/activities/{act['id']}/photos"
+                          f"?size=1200&photo_sources=true"
+                      )
+                      for p in photos:
+                          url = p.get("urls", {}).get("1200", "")
+                          if url:
+                              all_photos.append({
+                                  "url": url,
+                                  "activity_name": act["name"],
+                                  "activity_date": act["start_date"],
+                                  "activity_type": act.get("sport_type", act.get("type", "Activity")),
+                              })
+
           all_photos = []
-          for act in data.get("activities", []):
-              if act.get("total_photo_count", 0) > 0:
-                  photos = fetch(
-                      f"https://www.strava.com/api/v3/activities/{act['id']}/photos"
-                      f"?size=1200&photo_sources=true"
-                  )
-                  for p in photos:
-                      url = p.get("urls", {}).get("1200", "")
-                      if url:
-                          all_photos.append({
-                              "url": url,
-                              "activity_name": act["name"],
-                              "activity_date": act["start_date"],
-                              "activity_type": act.get("sport_type", act.get("type", "Activity")),
-                          })
+          seen_ids = {act["id"] for act in data.get("activities", [])}
+
+          # Photos from the 20 activities already in the data
+          collect_photos_from_activities(data.get("activities", []), all_photos)
+
+          # Scan additional pages for more photos (up to 200 extra activities)
+          for page in range(2, 12):
+              if len(all_photos) >= 60:
+                  break
+              extra = fetch(
+                  f"https://www.strava.com/api/v3/athlete/activities?per_page=20&page={page}"
+              )
+              if not extra:
+                  break
+              new_acts = [a for a in extra if a["id"] not in seen_ids]
+              collect_photos_from_activities(new_acts, all_photos)
+              seen_ids.update(a["id"] for a in extra)
 
           data["photos"] = all_photos
           print(f"Collected {len(all_photos)} photos", file=sys.stderr)

@@ -2,13 +2,7 @@ import { motion } from 'framer-motion'
 import { hero } from '../data/content.js'
 import './Hero.css'
 
-/**
- * Hero
- * ----
- * The opening screen. Elements animate in on load with a gentle stagger.
- */
-
-// A small helper so each line animates in sequence.
+// Children animate in on load with a staggered rise (see staggerChildren below).
 const item = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0 },
@@ -65,7 +59,6 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Soft animated scroll hint at the bottom of the hero. */}
       <motion.div
         className="hero__scroll-hint"
         initial={{ opacity: 0 }}

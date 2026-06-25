@@ -2,11 +2,6 @@ import Reveal from './Reveal.jsx'
 import { skills } from '../data/content.js'
 import './Skills.css'
 
-/**
- * Skills
- * ------
- * Grouped capability lists. Driven by `skills.groups` in content.js.
- */
 export default function Skills() {
   return (
     <section id="skills" className="section skills">

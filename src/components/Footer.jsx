@@ -2,6 +2,9 @@ import { contact, site } from '../data/content.js'
 import { EmailIcon, LinkedInIcon, GitHubIcon, DiscordIcon } from './icons.jsx'
 import './Footer.css'
 
+// Replaced at build time by Vite (see vite.config.js); sourced from package.json.
+const VERSION = __APP_VERSION__
+
 const ICON_MAP = {
   Email:    EmailIcon,
   LinkedIn: LinkedInIcon,
@@ -32,7 +35,7 @@ export default function Footer() {
           )
         })}
       </nav>
-      <p className="footer__copy">© {year} {site.name}</p>
+      <p className="footer__copy">© {year} {site.name} · v{VERSION}</p>
     </footer>
   )
 }

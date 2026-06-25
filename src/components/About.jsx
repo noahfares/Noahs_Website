@@ -2,11 +2,6 @@ import Reveal from './Reveal.jsx'
 import { about } from '../data/content.js'
 import './About.css'
 
-/**
- * About
- * -----
- * Personal intro paragraphs plus a row of highlight stats.
- */
 export default function About() {
   return (
     <section id="about" className="section about">

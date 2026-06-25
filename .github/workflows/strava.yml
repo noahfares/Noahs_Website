@@ -1,39 +1,8 @@
-##############################################################################
-#  Strava Data Sync
-#  ─────────────────────────────────────────────────────────────────────────
-#  Refreshes public/strava-data.json every 6 hours and on manual trigger.
-#  The deploy workflow auto-runs afterward because it watches `main`.
-#
-#  ONE-TIME SETUP — do this once, then forget about it:
-#
-#  1. Go to https://www.strava.com/settings/api and create an app:
-#       Application Name : Noah's Website (or anything)
-#       Category         : Other
-#       Website          : your site URL
-#       Authorization Callback Domain : localhost
-#     Note your Client ID and Client Secret.
-#
-#  2. Open this URL in your browser (replace YOUR_CLIENT_ID):
-#       https://www.strava.com/oauth/authorize?client_id=YOUR_CLIENT_ID
-#         &redirect_uri=http://localhost&response_type=code
-#         &scope=read,activity:read_all
-#     Approve access. You'll land on a localhost URL — grab the `code` param.
-#
-#  3. Exchange the code for a refresh token (run in terminal, replace values):
-#       curl -X POST https://www.strava.com/oauth/token \
-#         -F client_id=YOUR_CLIENT_ID \
-#         -F client_secret=YOUR_CLIENT_SECRET \
-#         -F code=THE_CODE_FROM_STEP_2 \
-#         -F grant_type=authorization_code
-#     Copy the `refresh_token` value from the JSON response.
-#
-#  4. Add three GitHub Secrets (repo → Settings → Secrets → Actions):
-#       STRAVA_CLIENT_ID      ← from step 1
-#       STRAVA_CLIENT_SECRET  ← from step 1
-#       STRAVA_REFRESH_TOKEN  ← from step 3
-#
-#  5. Run this workflow manually once (Actions tab → "Strava Data Sync" → Run).
-##############################################################################
+# Refreshes public/strava-data.json on a schedule, commits it to `main`, and
+# triggers the deploy workflow. Reads three repo secrets (Settings → Secrets →
+# Actions): STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN.
+# Get the refresh token via Strava's OAuth flow with scope activity:read_all
+# (https://developers.strava.com/docs/authentication/).
 
 name: Strava Data Sync
 

@@ -1,19 +1,7 @@
 import { motion } from 'framer-motion'
 
-/**
- * Reveal
- * ------
- * Wraps any content and fades + slides it into view the first time it
- * scrolls onto screen — the signature Apple "content rises up" effect.
- *
- * Props:
- *   - delay:  seconds to wait before animating (stagger items by passing
- *             0, 0.1, 0.2, ...).
- *   - y:      how far (px) the element starts below its final position.
- *   - as:     the wrapper element/component type (default: 'div').
- *
- * Usage:  <Reveal delay={0.1}><h2>Hello</h2></Reveal>
- */
+// Fades + slides children up each time they scroll into view.
+// Props: delay (seconds, for staggering siblings), y (px travel), as (wrapper tag).
 export default function Reveal({
   children,
   delay = 0,

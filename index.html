@@ -15,7 +15,7 @@
       content="Noah — personal website. Engineer, builder, and lifelong learner."
     />
     <title>Noah Fares</title>
-    <!-- Reads theme from localStorage before React mounts to prevent a light flash on dark mode -->
+    <!-- Sets the theme before React mounts to avoid a flash of the wrong color scheme. -->
     <script>
       (function () {
         var t = localStorage.getItem('theme') ||

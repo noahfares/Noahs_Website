@@ -2,8 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]   # auto-deploys on every push to main
-  workflow_dispatch:   # lets you trigger a manual deploy from GitHub UI
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -37,7 +37,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: dist   # the Vite build output folder
+          path: dist
 
   deploy:
     needs: build

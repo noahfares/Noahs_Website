@@ -1,7 +1,7 @@
 {
   "name": "noahs-website",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
   "description": "Noah's personal website — a clean, Apple-inspired single-page site.",
   "scripts": {

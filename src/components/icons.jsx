@@ -1,10 +1,4 @@
-/**
- * Icons
- * -----
- * Inline SVG icon components used in the Navbar (Sun/Moon) and Footer
- * (Email, LinkedIn, GitHub, Discord). All use currentColor so they
- * automatically pick up whatever color their parent sets.
- */
+// Inline SVG icons. All inherit `currentColor`, so the parent's color controls them.
 
 export function SunIcon() {
   return (

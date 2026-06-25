@@ -1,25 +1,14 @@
-/* ==========================================================================
-   GLOBAL STYLES & DESIGN TOKENS
-   --------------------------------------------------------------------------
-   All shared design decisions (colors, spacing, type) live here as CSS
-   variables. Change a value once and it updates everywhere.
-
-   Two-font system:
-     IBM Plex Sans  — body text, paragraphs, descriptions
-     JetBrains Mono — headings, labels, nav, tags, anything structural
-   They share geometric proportions and feel cohesive as a pair.
-   ========================================================================== */
+/* Global styles + design tokens. Change a token here and it updates everywhere.
+   Fonts: IBM Plex Sans for body text, JetBrains Mono for headings/labels/structure. */
 
 :root {
-  /* --- Colors — light mode ---
-       Warm off-white inspired by Anthropic: avoids harsh pure white/black
-       so both modes feel easy on the eye.                               --- */
+  /* Light-mode colors. Warm off-white (not pure white/black) for both modes. */
   --color-bg: #f5f4ef;
   --color-bg-alt: #ffffff;
-  --color-bg-dark: #e9e7e0;       /* "dark" sections in light mode — warm light gray */
+  --color-bg-dark: #e9e7e0;       /* `.section--dark` background in light mode: warm gray, not black */
   --color-text: #1a1918;
   --color-text-soft: #706d67;
-  --color-text-invert: #1a1918;   /* text on "dark" sections (still dark in light mode) */
+  --color-text-invert: #1a1918;   /* text on `.section--dark`: stays dark in light mode */
   --color-accent: #0066cc;
   --color-accent-hover: #0070df;
   --color-border: #dddad4;
@@ -27,7 +16,7 @@
   --hero-title-gradient: linear-gradient(180deg, #1a1918 30%, #514e4b);
   --dot-color: rgba(0, 0, 0, 0.04);
 
-  /* Card tokens — lets Work cards adapt between light and dark modes */
+  /* Card tokens — adapt cards across light/dark sections and modes */
   --card-bg: #ffffff;
   --card-border: #e4e1db;
   --card-text: #1a1918;
@@ -48,9 +37,7 @@
   --transition: 0.4s var(--ease-out);
 }
 
-/* --- Dark mode overrides — applied via data-theme="dark" on <html> ---
-       Deep charcoal instead of pure black; warm tinted off-white instead
-       of pure white. Accent shifts lighter so it stays legible.        --- */
+/* Dark mode: set by data-theme="dark" on <html> (see the inline script in index.html). */
 :root[data-theme="dark"] {
   --color-bg: #161618;
   --color-bg-alt: #1f1e22;
@@ -95,7 +82,6 @@ body {
   background-color: var(--color-bg);
   line-height: 1.5;
   letter-spacing: -0.01em;
-  /* Smooth theme transition */
   transition: background-color 0.35s ease, color 0.35s ease;
 }
 
@@ -123,9 +109,8 @@ img {
   transition: background-color 0.35s ease;
 }
 
-/* "Dark" sections — warm subtle contrast instead of harsh black/white swap.
-   In light mode: a warm light gray. In dark mode: a near-black charcoal.
-   The dot grid adds a quiet technical texture without overpowering.      */
+/* "Dark" sections: warm gray in light mode, near-black in dark mode.
+   The radial dot grid adds a subtle technical texture. */
 .section--dark {
   background-color: var(--color-bg-dark);
   color: var(--color-text-invert);

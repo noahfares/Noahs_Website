@@ -2,12 +2,6 @@ import Reveal from './Reveal.jsx'
 import { work, projects } from '../data/content.js'
 import './Work.css'
 
-/**
- * Work
- * ----
- * A grid of project cards. Pulls directly from the `projects` array in
- * content.js — add an object there and a new card appears automatically.
- */
 export default function Work() {
   return (
     <section id="work" className="section work section--dark">

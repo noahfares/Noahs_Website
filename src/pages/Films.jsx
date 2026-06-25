@@ -15,10 +15,7 @@ function StarRating({ rating }) {
 function MovieCard({ film, rank }) {
   return (
     <div className="movie-card">
-      <div
-        className="movie-card__poster"
-        style={film.poster ? undefined : { background: film.gradient }}
-      >
+      <div className="movie-card__poster">
         {film.poster && (
           <img src={film.poster} alt={film.title} loading="lazy" className="movie-card__poster-img" />
         )}
@@ -38,8 +35,6 @@ function MovieCard({ film, rank }) {
 export default function Films() {
   return (
     <div className="films-page">
-
-      {/* Hero */}
       <section className="section films-page__hero">
         <div className="container">
           <Reveal as="p" className="eyebrow">{films.eyebrow}</Reveal>
@@ -50,7 +45,6 @@ export default function Films() {
         </div>
       </section>
 
-      {/* Top films */}
       <section className="section section--dark">
         <div className="container">
           <Reveal as="p" className="eyebrow">All-time</Reveal>
@@ -65,7 +59,6 @@ export default function Films() {
         </div>
       </section>
 
-      {/* Watchlist */}
       <section className="section">
         <div className="container">
           <Reveal as="p" className="eyebrow">Queue</Reveal>

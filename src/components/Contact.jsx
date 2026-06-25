@@ -2,11 +2,6 @@ import Reveal from './Reveal.jsx'
 import { contact } from '../data/content.js'
 import './Contact.css'
 
-/**
- * Contact
- * -------
- * Closing call to action on a dark section, with email + social links.
- */
 export default function Contact() {
   return (
     <section id="contact" className="section section--dark contact">

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { MotionConfig } from 'framer-motion'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
@@ -40,14 +41,15 @@ export default function App() {
   const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
+      <a className="skip-link" href="#main">Skip to content</a>
       <Navbar theme={theme} onToggleTheme={toggleTheme} page={page} navigate={navigate} />
-      <main>
+      <main id="main">
         {page === 'home'   && <Home />}
         {page === 'strava' && <Strava />}
         {page === 'films'  && <Films />}
       </main>
       <Footer />
-    </>
+    </MotionConfig>
   )
 }

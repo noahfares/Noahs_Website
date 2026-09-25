@@ -1,6 +1,6 @@
 # Noah's Website
 
-A personal site — clean, Apple-inspired, single-page. Built with **React** + **Vite**,
+A personal site with an engineering notebook aesthetic and JetBrains Mono throughout. Built with **React** + **Vite**,
 animated with **Framer Motion**, and deployed to **GitHub Pages** at
 [noahfares.com](https://noahfares.com).
 
@@ -69,3 +69,7 @@ currently pre-1.0). It's shown in the site footer and tracked in
 
 > Working on the code with an AI assistant? See [CLAUDE.md](CLAUDE.md) for the
 > conventions and invariants it relies on.
+
+## Shared website and hub theme
+
+Design tokens live in `src/styles/theme.css`. See [the design system](docs/DESIGN_SYSTEM.md) for visual rules and hub integration guidance.

@@ -1,0 +1,52 @@
+/* Portable theme: import this file in the website or hub. */
+:root {
+  color-scheme: light;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
+  --font-sans: var(--font-mono);
+  --color-bg: #f5f4ef;
+  --color-bg-alt: #ffffff;
+  --color-bg-dark: #e9e7e0;
+  --color-text: #1a1918;
+  --color-text-soft: #706d67;
+  --color-text-invert: var(--color-text);
+  --color-accent: #0066cc;
+  --color-accent-hover: #0070df;
+  --color-on-accent: #ffffff;
+  --color-border: #dddad4;
+  --color-navbar-blur: #f5f4eff2;
+  --color-highlight: #e0edfa;
+  --dot-color: #0000000a;
+  --card-bg: var(--color-bg-alt);
+  --card-border: var(--color-border);
+  --card-text: var(--color-text);
+  --card-text-soft: var(--color-text-soft);
+  --card-shadow: none;
+  --card-shadow-hover: 0 12px 32px #0000000d;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --max-width: 1240px;
+  --nav-height: 80px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: 0.3s var(--ease-out);
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #161618;
+  --color-bg-alt: #1f1e22;
+  --color-bg-dark: #0d0c0f;
+  --color-text: #e8e5de;
+  --color-text-soft: #908d86;
+  --color-accent: #4da6ff;
+  --color-accent-hover: #5ab0ff;
+  --color-on-accent: #101820;
+  --color-border: #2e2c34;
+  --color-navbar-blur: #161618f2;
+  --color-highlight: #1b3048;
+  --dot-color: #ffffff0d;
+  --card-shadow-hover: 0 12px 32px #00000026;
+}

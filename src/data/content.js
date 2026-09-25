@@ -19,7 +19,20 @@ export const navLinks = [
 ]
 
 export const hero = {
+  eyebrow: 'Portfolio / Electrical engineering',
+  location: 'Based in Calgary, AB',
+  intro: 'Hello, world. I’m',
+  diagramLabel: 'At the intersection of hardware & software',
+  disciplineLabel: 'Explore engineering disciplines',
+  current: 'Currently · Promise Robotics',
+  explore: 'Explore the notebook',
+  disciplines: [
+    { label: '01 Hardware', code: 'SYS.01 / CIRCUITS & SIGNALS', description: 'From FPGA calibration to optical testing. Precision starts at the hardware.' },
+    { label: '02 Software', code: 'SYS.02 / CODE & VERIFICATION', description: 'Automation frameworks and chip verification. Making complex systems reliable.' },
+    { label: '03 Robotics', code: 'SYS.03 / MOTION & CONTROL', description: 'Where hardware meets software. My current chapter at Promise Robotics.' },
+  ],
   title: 'Noah Fares.',
+  titleLines: ['Noah', 'Fares'],
   subtitle: 'Electrical Engineer. Robotics & Automation.',
   tagline:
     'I build reliable, precise systems — from mission-critical chip verification to robotics and automation.',

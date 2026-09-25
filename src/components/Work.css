@@ -88,3 +88,13 @@
 .card__link:hover {
   opacity: 0.7;
 }
+
+/* Editorial layout built from the shared theme primitives. */
+.work__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); }
+.card { border-radius: var(--radius-md); padding: var(--space-4); position: relative; }
+.card__index { color: var(--color-text-soft); font-size: 0.7rem; }
+.card__category { text-transform: none; font-size: 0.64rem; opacity: 1; }
+.card__title { font-size: clamp(1.05rem, 2vw, 1.4rem); font-weight: 500; line-height: 1.4; letter-spacing: -0.045em; }
+.card__desc { font-size: 0.8rem; line-height: 1.9; }
+.card__tags li { background: var(--color-bg); font-size: 0.63rem; }
+@media (max-width: 680px) { .work__grid { grid-template-columns: 1fr; } }

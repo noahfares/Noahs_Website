@@ -5,6 +5,7 @@ import './Navbar.css'
 
 export default function Navbar({ theme, onToggleTheme, page = 'home', navigate }) {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -14,6 +15,7 @@ export default function Navbar({ theme, onToggleTheme, page = 'home', navigate }
   }, [])
 
   const handleAnchorClick = (e, href) => {
+    setMenuOpen(false)
     if (page !== 'home') {
       e.preventDefault()
       navigate('home')
@@ -28,15 +30,17 @@ export default function Navbar({ theme, onToggleTheme, page = 'home', navigate }
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <nav className="navbar__inner container">
         <button className="navbar__logo" onClick={() => navigate('home')} aria-label="Home">
-          {site.initial}
+          <span className="navbar__mark">{site.initial.toLowerCase()}f.</span><span className="navbar__wordmark">noahfares<span>/</span></span>
         </button>
-        <ul className="navbar__links">
+        <button className="navbar__menu" aria-expanded={menuOpen} aria-controls="navigation-links" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'Close −' : 'Menu +'}</button>
+        <ul id="navigation-links" className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}>
           {navLinks.map((link) => (
             <li key={link.label}>
               {link.type === 'page' ? (
                 <button
                   className={`navbar__page-btn ${page === link.page ? 'navbar__page-btn--active' : ''}`}
-                  onClick={() => navigate(link.page)}
+                  aria-current={page === link.page ? 'page' : undefined}
+                  onClick={() => { navigate(link.page); setMenuOpen(false) }}
                 >
                   {link.label}
                 </button>

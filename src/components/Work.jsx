@@ -17,6 +17,7 @@ export default function Work() {
           {projects.map((project, i) => (
             <Reveal key={project.title} delay={0.08 * i}>
               <article className="card">
+                <span className="card__index" aria-hidden="true">/{String(i + 1).padStart(2, '0')}</span>
                 <div className="card__top">
                   <span className="card__category">{project.category}</span>
                   <h3 className="card__title">{project.title}</h3>

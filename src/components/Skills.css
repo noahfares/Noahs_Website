@@ -53,3 +53,8 @@
   color: var(--color-accent);
   font-weight: 600;
 }
+
+.skills__group { border-radius: var(--radius-md); }
+.skills__group-name { color: var(--color-accent); font-size: 0.85rem; }
+.skills__list li { font-size: 0.78rem; }
+@media (max-width: 360px) { .skills__grid { grid-template-columns: minmax(0, 1fr); } }

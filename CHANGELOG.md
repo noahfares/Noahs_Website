@@ -5,6 +5,14 @@ All notable changes to this site are recorded here. Versioning follows
 [`package.json`](package.json) is the single source of truth and is shown in the
 site footer. See the release process in [CLAUDE.md](CLAUDE.md#versioning).
 
+## [1.0.0] — 2026-09-25
+
+### Changed
+- Redesigned the portfolio with JetBrains Mono throughout, an interactive circuit
+  hero, refined experience cards, and the original blue, black, and white palette.
+- Improved mobile navigation, keyboard focus, and reduced-motion support.
+- Extracted reusable light/dark theme tokens and documented the hub styling handoff.
+
 ## [0.1.0] — 2026-06-24
 
 First tracked release. The site is pre-1.0 and under active development.
